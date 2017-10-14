@@ -21,8 +21,10 @@ class Enigma
     new_character_values = character_values.map do |value|
       # binding.pry
       counter += 1
-      (value + offset[counter%4])% characters.count
+      new_value = (value + offset[counter%4])% characters.count
+      characters.key(new_value)
     end
+    new_character_values.join("")
 
   end
 

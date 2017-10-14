@@ -33,10 +33,10 @@ class EnigmaTest < Minitest::Test
     assert_instance_of Hash, enigma.characters
   end
 
-  def test_encrypt_outputs_offset
+  def test_encrypt_outputs_message
     enigma = Enigma.new
 
-    assert_equal [16, 25, 42, 54], enigma.encrypt("hello world", "12345", Date.today)
+    assert_equal "x4o15wz48 g", enigma.encrypt("hello world", "12345", Date.today)
   end
 
 end

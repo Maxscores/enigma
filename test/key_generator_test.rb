@@ -1,8 +1,4 @@
-require './lib/key_generator'
-require 'minitest/autorun'
-require 'minitest/pride'
-require 'date'
-require 'pry'
+require_relative 'test_helper'
 
 class KeyGeneratorTest < Minitest::Test
   def test_it_exists

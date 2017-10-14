@@ -24,6 +24,4 @@ class CharactersTest < Minitest::Test
     assert_equal 29, characters.characters["3"]
     assert_equal 37, characters.characters[" "]
   end
-
-
 end

@@ -1,7 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/pride'
-require 'pry'
-require './lib/offset'
+require_relative 'test_helper'
 
 class OffsetTest < Minitest::Test
   def test_offset_exists
@@ -32,6 +29,12 @@ class OffsetTest < Minitest::Test
     offset = Offset.new('12345', Date.new(2017,10,14))
 
     assert_equal 141017, offset.date_code
+  end
+
+  def test_last_digits_of_squared_date_to_offset_array
+    offset = Offset.new('12345', Date.new(2017,10,14))
+
+    assert_equal [4, 2, 8, 9], offset.date_offset
   end
 
 end

@@ -10,5 +10,14 @@ class Offset
     @date_code = KeyGenerator.new.date_code(date)
   end
 
+  def date_offset
+    date_offset  = []
+    squared = date_code**2
+    4.times do |time|
+      date_offset << squared.digits[3 - time]
+      # check for enumerables here for refactoring^
+    end
+    date_offset
+  end
 
 end

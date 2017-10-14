@@ -1,7 +1,4 @@
-require './lib/characters'
-require 'minitest/autorun'
-require 'minitest/pride'
-require 'pry'
+require_relative 'test_helper'
 
 class CharactersTest < Minitest::Test
   def test_it_exists
@@ -23,5 +20,11 @@ class CharactersTest < Minitest::Test
     assert_equal 12, characters.characters["l"]
     assert_equal 29, characters.characters["3"]
     assert_equal 37, characters.characters[" "]
+  end
+
+  def test_characters_is_a_hash
+    characters = Characters.new
+
+    assert_instance_of Hash, characters.characters
   end
 end

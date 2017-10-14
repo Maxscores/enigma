@@ -10,5 +10,4 @@ class KeyGenerator
     day, month, year = t.day, t.mon, t.year%1000
     "#{day}#{month}#{year}".to_i
   end
-
 end

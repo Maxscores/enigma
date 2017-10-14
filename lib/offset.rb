@@ -27,4 +27,12 @@ class Offset
     end
     key_offset
   end
+
+  def offset
+    date_and_key = key_offset.zip(date_offset)
+    offset = date_and_key.map do |pair|
+      pair.sum
+    end
+  end
+
 end

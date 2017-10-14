@@ -43,5 +43,11 @@ class OffsetTest < Minitest::Test
     assert_equal [12, 23, 34, 45], offset.key_offset
   end
 
+  def test_total_of_offsets
+    offset = Offset.new('12345', Date.new(2017,10,14))
+
+    assert_equal [16, 25,42, 54], offset.offset
+  end
+
 
 end

@@ -14,20 +14,25 @@ class Enigma
 
   def encrypt(message, key = random_key, date = default_date)
     offset = Offset.new(key, date).offset
-    character_values = message.split("").map do |character|
+    character_values = format_message(message)
+    new_character_values = encrypt_characters(character_values, offset)
+    new_character_values.join("")
+  end
+
+
+  def format_message(message)
+    message.split("").map do |character|
       characters[character]
     end
-    counter = -1
-    new_character_values = character_values.map do |value|
-      # binding.pry
+  end
+
+  def encrypt_characters(character_values, offset)
+    counter = (-1)
+    character_values.map do |value|
       counter += 1
       new_value = (value + offset[counter%4])% characters.count
       characters.key(new_value)
     end
-    new_character_values.join("")
-
   end
-
-
 
 end

@@ -33,6 +33,18 @@ class EnigmaTest < Minitest::Test
     assert_instance_of Hash, enigma.characters
   end
 
+  def test_formats_message
+    enigma = Enigma.new
+
+    assert_equal [20, 5, 24, 20],enigma.format_message("text")
+  end
+
+  def test_encrypts_characters
+    enigma = Enigma.new
+    encrypted = enigma.encrypt_characters([20, 5, 24, 20], [16, 25, 42, 54])
+    assert_equal ["0","4","1","9"], encrypted
+  end
+
   def test_encrypt_outputs_message
     enigma = Enigma.new
 

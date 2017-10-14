@@ -5,7 +5,7 @@ class Offset
   attr_reader :key, :date_code, :date
 
   def initialize(key = KeyGenerator.new.key, date = Date.today)
-    @key = key.to_i
+    @key = key
     @date = date
     @date_code = KeyGenerator.new.date_code(date)
   end
@@ -20,4 +20,11 @@ class Offset
     date_offset
   end
 
+  def key_offset
+    key_offset = []
+    4.times do |time|
+      key_offset << [key[time],key[time + 1]].join("").to_i
+    end
+    key_offset
+  end
 end

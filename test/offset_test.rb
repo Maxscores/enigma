@@ -16,7 +16,7 @@ class OffsetTest < Minitest::Test
   def test_argument_key_accepted
     offset = Offset.new('12345')
 
-    assert_equal 12345, offset.key
+    assert_equal '12345', offset.key
   end
 
   def test_has_date_by_default
@@ -36,5 +36,12 @@ class OffsetTest < Minitest::Test
 
     assert_equal [4, 2, 8, 9], offset.date_offset
   end
+
+  def test_key_offset_is_an_array
+    offset = Offset.new('12345', Date.new(2017,10,14))
+
+    assert_equal [12, 23, 34, 45], offset.key_offset
+  end
+
 
 end

@@ -15,3 +15,7 @@ need to figure out which characters of '..end..' are
 offset = key + date
 encrypted_value = char_value + key + date_code
 key = encrypted_value - char_value - date_code
+
+
+'hello world  ..end..'
+'abcdabcdabcdabcdabcd'

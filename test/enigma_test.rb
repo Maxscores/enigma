@@ -59,4 +59,21 @@ class EnigmaTest < Minitest::Test
     assert_equal "hello world", decrypted
   end
 
+  def test_english_file_to_encryption
+    enigma = Enigma.new
+    enigma.default_date = Date.new(2017, 10, 14)
+    enigma.random_key = "12345"
+
+    assert_equal "x4o15wz48 g", enigma.encrypt_file('test_message.txt')
+  end
+
+  def test_decrypt_file_to_english
+    enigma = Enigma.new
+    enigma.default_date = Date.new(2017, 10, 14)
+    enigma.random_key = "12345"
+
+    assert_equal "hello world", enigma.decrypt_file('test_encrypted_message.txt', enigma.random_key, enigma.default_date)
+  end
+
+
 end

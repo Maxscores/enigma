@@ -4,7 +4,8 @@ require 'date'
 require 'pry'
 
 class Enigma
-  attr_reader :random_key, :default_date, :characters
+  attr_reader  :characters
+  attr_accessor :random_key, :default_date
 
   def initialize
     @random_key = KeyGenerator.new.key
@@ -50,23 +51,26 @@ class Enigma
     end
   end
 
-  # def encrypt_file(file_to_read)
-  #   file = File.readlines(file_to_read)
-  #   file.map do |line|
-  #     encrypt(line)
-  #   end
-  # end
-  #
-  # def decrypt_file(file_to_read, key, date_code)
-  #   file = File.readlines(file_to_read)
-  #   file.map do |line|
-  #     decrypt(line, key, date_code)
-  #   end
-  # end
-  #
-  # def write_file(file_to_write, text_to_write)
-  #   file = File.new(file_to_write, 'w')
-  #   file.write(text_to_write)
-  # end
+  def encrypt_file(file_to_read)
+    file = File.readlines(file_to_read)
+    encrypted_file = file.map do |line|
+      encrypt(line.chomp)
+    end
+    encrypted_file.join("")
+  end
+
+  def decrypt_file(file_to_read, key, date_code)
+    file = File.readlines(file_to_read)
+    decrypted_file = file.map do |line|
+      decrypt(line.chomp, key, date_code)
+    end
+    decrypted_file.join("")
+  end
+
+  def write_file(file_to_write, text_to_write)
+    file = File.new(file_to_write, 'w')
+    file.write(text_to_write)
+    file.close
+  end
 
 end

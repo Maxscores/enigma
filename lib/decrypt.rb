@@ -8,8 +8,7 @@ Created 'decrypted.txt' with the key 82648 and date 030415
 #ARGV = ['encrypted.txt', 'decrypted.txt', 'key', 'date_code']
 
 enigma = Enigma.new
-encrypted_text = enigma.decrypt_file(ARGV[0], )
+decrypted_text = enigma.decrypt_file(ARGV[0], ARGV[2], ARGV[3])
 enigma.write_file(ARGV[1], decrypted_text)
-key = enigma.random_key
-date = KeyGenerator.new.date_code(enigma.default_date)
-puts "Created #{ARGV[1]} with the key #{key} and date #{date}"
+
+puts "Created #{ARGV[1]} with the key #{ARGV[2]} and date #{ARGV[3]}"

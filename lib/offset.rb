@@ -7,7 +7,11 @@ class Offset
   def initialize(key, date)
     @key = key
     @date = date
-    @date_code = KeyGenerator.new.date_code(date)
+    if date.class == Date
+      @date_code = KeyGenerator.new.date_code(date)
+    elsif date.class == String
+      @date_code = date.to_i
+    end
     #put something to allow date_code instead
   end
 

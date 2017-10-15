@@ -8,6 +8,7 @@ class Offset
     @key = key
     @date = date
     @date_code = KeyGenerator.new.date_code(date)
+    #put something to allow date_code instead
   end
 
   def date_offset

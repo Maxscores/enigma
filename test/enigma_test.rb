@@ -42,6 +42,7 @@ class EnigmaTest < Minitest::Test
   def test_encrypts_characters
     enigma = Enigma.new
     encrypted = enigma.encrypt_characters([20, 5, 24, 20], [16, 25, 42, 54])
+
     assert_equal ["0","4","1","9"], encrypted
   end
 
@@ -50,5 +51,29 @@ class EnigmaTest < Minitest::Test
 
     assert_equal "x4o15wz48 g", enigma.encrypt("hello world", "12345", Date.today)
   end
+
+  def test_decrypt_outputs_readable_message_default_date
+    enigma = Enigma.new
+    decrypted = enigma.decrypt("x4o15wz48 g", "12345")
+
+    assert_equal "hello world", decrypted
+  end
+
+  def test_english_file_to_encryption
+    enigma = Enigma.new
+    enigma.default_date = Date.new(2017, 10, 14)
+    enigma.random_key = "12345"
+
+    assert_equal "x4o15wz48 g", enigma.encrypt_file('test_message.txt')
+  end
+
+  def test_decrypt_file_to_english
+    enigma = Enigma.new
+    enigma.default_date = Date.new(2017, 10, 14)
+    enigma.random_key = "12345"
+
+    assert_equal "hello world", enigma.decrypt_file('test_encrypted_message.txt', enigma.random_key, enigma.default_date)
+  end
+
 
 end

@@ -1,1 +1,1 @@
-require 'enigma'
+require './lib/enigma'

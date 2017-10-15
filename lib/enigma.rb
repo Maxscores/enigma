@@ -50,4 +50,23 @@ class Enigma
     end
   end
 
+  # def encrypt_file(file_to_read)
+  #   file = File.readlines(file_to_read)
+  #   file.map do |line|
+  #     encrypt(line)
+  #   end
+  # end
+  #
+  # def decrypt_file(file_to_read, key, date_code)
+  #   file = File.readlines(file_to_read)
+  #   file.map do |line|
+  #     decrypt(line, key, date_code)
+  #   end
+  # end
+  #
+  # def write_file(file_to_write, text_to_write)
+  #   file = File.new(file_to_write, 'w+')
+  #   file.write(text_to_write)
+  # end
+
 end

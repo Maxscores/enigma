@@ -1,11 +1,1 @@
-
-class Encrypt
-
-  def initialize
-
-  end
-
-  
-
-
-end
+require 'enigma'

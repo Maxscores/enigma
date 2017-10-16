@@ -22,7 +22,7 @@ class Offset
       date_offset << squared.digits[3 - time]
       # check for enumerables here for refactoring^
     end
-    date_offset
+    date_offset = squared.digits.reverse[0..3].map {|offset| offset}
   end
 
   def key_offset

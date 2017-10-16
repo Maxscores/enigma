@@ -7,12 +7,6 @@ class Offset
   def initialize(key, date)
     @key = key
     @date = date
-    # if date.class == Date
-    #   @date_code = date_code(date)
-    # elsif date.class == String
-    #   @date_code = date.to_i
-    # end
-    #put something to allow date_code instead
   end
 
   def date_code(date)
@@ -27,13 +21,8 @@ class Offset
   end
 
   def date_offset
-    # date_offset  = []
     squared = date_code(date)**2
-    # 4.times do |time|
-    #   date_offset << squared.digits[3 - time]
-    #   # check for enumerables here for refactoring^
-    # end
-    squared.digits.reverse[-4..-1].map {|offset| offset}
+    squared.digits.reverse[-4..-1]
   end
 
   def key_offset
@@ -42,18 +31,11 @@ class Offset
       key_offset << [key[time],key[time + 1]].join("").to_i
     end
     key_offset
-    # counter = (-1)
-    # keys = key.split("")
-    # keys.map do |key|
-    #   counter += 1
-    #   break if counter==4
-    #   [keys[counter], keys[counter+1]].join("").to_i
-    # end
   end
 
   def offset
     date_and_key = key_offset.zip(date_offset)
-    offset = date_and_key.map do |pair|
+    date_and_key.map do |pair|
       pair.sum
     end
   end

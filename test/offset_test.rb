@@ -28,7 +28,7 @@ class OffsetTest < Minitest::Test
   def test_argument_date_accepted
     offset = Offset.new('12345', Date.new(2017,10,14))
 
-    assert_equal 141017, offset.date_code
+    assert_equal 141017, offset.date_code(offset.date)
   end
 
   def test_last_digits_of_squared_date_to_offset_array

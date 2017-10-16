@@ -1,5 +1,3 @@
-require 'date'
-
 class KeyGenerator
   attr_reader :key
 

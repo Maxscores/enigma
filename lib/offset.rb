@@ -4,7 +4,7 @@ require 'date'
 class Offset
   attr_reader :key, :date
 
-  def initialize(key, date)
+  def initialize(key, date=Date.today)
     @key = key
     @date = date
   end
@@ -32,6 +32,7 @@ class Offset
     end
     key_offset
   end
+  #check enumerables in ruby
 
   def offset
     date_and_key = key_offset.zip(date_offset)

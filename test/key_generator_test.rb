@@ -34,3 +34,6 @@ class KeyGeneratorTest < Minitest::Test
     assert_equal 140101, new_key.date_code(date)
   end
 end
+
+#test for length
+#test for integers

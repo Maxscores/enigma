@@ -19,3 +19,4 @@ key = encrypted_value - char_value - date_code
 
 'hello world  ..end..'
 'abcdabcdabcdabcdabcd'
+"""

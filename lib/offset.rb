@@ -2,27 +2,27 @@ require './lib/key_generator'
 require 'date'
 
 class Offset
-  attr_reader :key, :date_code, :date
+  attr_reader :key, :date
 
-  def initialize(key, date)
+  def initialize(key, date=Date.today)
     @key = key
     @date = date
+  end
+
+  def date_code(date)
     if date.class == Date
-      @date_code = KeyGenerator.new.date_code(date)
+      day, month, year = date.day, date.mon, date.year%100
+      month = "%02d" % month.to_s
+      year = "%02d" % year.to_s
+      "#{day}#{month}#{year}".to_i
     elsif date.class == String
-      @date_code = date.to_i
+      date.to_i
     end
-    #put something to allow date_code instead
   end
 
   def date_offset
-    date_offset  = []
-    squared = date_code**2
-    4.times do |time|
-      date_offset << squared.digits[3 - time]
-      # check for enumerables here for refactoring^
-    end
-    date_offset
+    squared = date_code(date)**2
+    squared.digits.reverse[-4..-1]
   end
 
   def key_offset
@@ -32,10 +32,11 @@ class Offset
     end
     key_offset
   end
+  #check enumerables in ruby
 
   def offset
     date_and_key = key_offset.zip(date_offset)
-    offset = date_and_key.map do |pair|
+    date_and_key.map do |pair|
       pair.sum
     end
   end

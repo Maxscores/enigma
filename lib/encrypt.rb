@@ -16,3 +16,5 @@ puts "Created #{ARGV[1]} with the key #{key} and date #{date}"
 
 
 #do we need to write a test?
+
+#encryptor class to hold methods for this

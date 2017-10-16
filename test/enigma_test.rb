@@ -64,14 +64,14 @@ class EnigmaTest < Minitest::Test
     enigma.default_date = Date.new(2017, 10, 14)
     enigma.random_key = "12345"
 
-    assert_equal "x4o15wz48 g", enigma.encrypt_file('test_message.txt')
+    assert_equal "x4o15wz48 g", enigma.encrypt_file('data/test_message.txt')
   end
 
   def test_decrypt_file_to_english
     enigma = Enigma.new
     enigma.default_date = Date.new(2017, 10, 14)
     enigma.random_key = "12345"
-    test_output = enigma.decrypt_file('test_encrypted_message.txt',
+    test_output = enigma.decrypt_file('data/test_encrypted_message.txt',
                                       enigma.random_key,
                                       enigma.default_date)
 
@@ -82,23 +82,23 @@ class EnigmaTest < Minitest::Test
     enigma = Enigma.new
     enigma.default_date = Date.new(2017, 10, 14)
     enigma.random_key = "12345"
-    encrypted_text = enigma.encrypt_file('test_message.txt')
-    enigma.write_file('encrypted.txt', encrypted_text)
+    encrypted_text = enigma.encrypt_file('data/test_message.txt')
+    enigma.write_file('data/encrypted.txt', encrypted_text)
 
 
-    assert_equal "x4o15wz48 g", File.open('encrypted.txt', 'r').read
+    assert_equal "x4o15wz48 g", File.open('data/encrypted.txt', 'r').read
   end
 
   def test_writes_decrypted_file_to_english
     enigma = Enigma.new
     enigma.default_date = Date.new(2017, 10, 14)
     enigma.random_key = "12345"
-    decrypted_text = enigma.decrypt_file('test_encrypted_message.txt',
+    decrypted_text = enigma.decrypt_file('data/test_encrypted_message.txt',
                                       enigma.random_key,
                                       enigma.default_date)
-    enigma.write_file('decrypted.txt', decrypted_text)
+    enigma.write_file('data/decrypted.txt', decrypted_text)
 
-    assert_equal "hello world", File.open('decrypted.txt', 'r').read
+    assert_equal "hello world", File.open('data/decrypted.txt', 'r').read
   end
 
 end

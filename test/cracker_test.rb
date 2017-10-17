@@ -49,7 +49,10 @@ class CrackerTest < Minitest::Test
   def test_crack
     cracker = Cracker.new
     encryption = "cl8sjefvmsze7f1u.fu"
+    message = "hello world ..end.."
 
-    assert_equal '30147', cracker.crack(encryption, '161017')
+    assert_equal message, cracker.crack(encryption, '161017')
   end
+
+
 end

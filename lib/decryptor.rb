@@ -1,22 +1,19 @@
 require './lib/offset'
 require './lib/characters'
+require './lib/helper_methods'
 
-class Decryptor
+class Decryptor < HelperMethods
   attr_reader :characters
 
   def initialize
     @characters = Characters.new.characters
   end
 
-  def decrypt(message, key, date = default_date)
+  def decrypt(message, key, date = Date.today)
     offset = Offset.new(key, date).offset
     character_values = format_message(message)
     decrypted_character_values = decrypt_characters(character_values, offset)
     decrypted_character_values.join("")
-  end
-
-  def format_message(message)
-    message.split("").map {|character| characters[character]}
   end
 
   def decrypt_characters(character_values, offset)
@@ -35,12 +32,4 @@ class Decryptor
     end
     decrypted_file.join("")
   end
-
-  #duplicate in decryptor & encryptor
-  def write_file(file_to_write, text_to_write)
-    file = File.new(file_to_write, 'w')
-    file.write(text_to_write)
-    file.close
-  end
-
 end

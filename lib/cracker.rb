@@ -1,8 +1,9 @@
 require './lib/offset.rb'
 require 'pry'
 require './lib/characters'
+require './lib/decryptor'
 
-class Cracker
+class Cracker < Decryptor
   attr_reader :characters
 
   def initialize
@@ -15,7 +16,8 @@ class Cracker
     encrypted_end_values = encrypted_end_values(encryption, crack_offset)
     known_end_values = known_end_values(crack_offset)
     values_zipped = encrypted_end_values.zip(known_end_values, date_offset)
-    key_finder(values_zipped)
+    key = key_finder(values_zipped)
+    decrypt(encryption, key, date)
   end
 
   def encrypted_end_values(encryption, crack_offset)

@@ -1,4 +1,3 @@
-
 class HelperMethods
 
   def write_file(file_to_write, text_to_write)

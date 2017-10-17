@@ -16,7 +16,7 @@ class EncryptorTest <MiniTest::Test
   def test_format_message_works
     encryptor = Encryptor.new()
     message = "x4o15"
-    output = [24, 30, 15, 27, 31]
+    output = [23, 29, 14, 26, 30]
 
     assert_equal output, encryptor.format_message(message)
   end
@@ -28,7 +28,7 @@ class EncryptorTest <MiniTest::Test
 
     encrypted_message = encryptor.encrypt_characters(character_values, offset)
 
-    assert_equal "x4o15wz48 g", encrypted_message.join
+    assert_equal "y5p26x159.h", encrypted_message.join
   end
 
   def test_encrypt_integration

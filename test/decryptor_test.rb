@@ -16,16 +16,16 @@ class DecryptorTest < Minitest::Test
   def test_format_message_works
     decryptor = Decryptor.new()
     message = "hello"
-    output = [8, 5, 12, 12, 15]
+    output = [7, 4, 11, 11, 14]
 
     assert_equal output, decryptor.format_message(message)
   end
 
   def test_decrypt_characters
     decryptor = Decryptor.new()
-    character_values = [24, 30, 15, 27, 31, 23, 26, 30, 34, 37, 7]
+    character_values = [23, 29, 14, 26, 30, 22, 25, 29, 33, 36, 6]
     offset = [16, 25, 42, 54]
-    
+
     decrypted_message = decryptor.decrypt_characters(character_values, offset)
 
     assert_equal "hello world", decrypted_message.join

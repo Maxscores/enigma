@@ -11,10 +11,7 @@ class Offset
 
   def date_code(date)
     if date.class == Date
-      day, month, year = date.day, date.mon, date.year%100
-      month = "%02d" % month.to_s
-      year = "%02d" % year.to_s
-      "#{day}#{month}#{year}".to_i
+      date.strftime("%d%m%y").to_i
     elsif date.class == String
       date.to_i
     end

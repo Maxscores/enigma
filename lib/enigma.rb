@@ -11,21 +11,27 @@ class Enigma
   def initialize
     @random_key = KeyGenerator.new.key
     @default_date = Date.today
-    @characters = Characters.new.characters
+    # @characters = Characters.new.characters
   end
 
-  def decrypt(message, key, date)
+  def decrypt(message, key, date = default_date)
     decryptor = Decryptor.new
-    decryptor.decrypt(message, key, date)
+    message = decryptor.decrypt(message, key, date)
+    puts message
+    message
   end
 
   def encrypt(message, key = random_key, date = default_date)
     encryptor = Encryptor.new
-    encryptor.encrypt(message, key, date)
+    message = encryptor.encrypt(message, key, date)
+    puts message
+    message
   end
 
   def crack(encryption, date = default_date)
     cracker = Cracker.new
-    cracker.crack(encryption, date)
+    message = cracker.crack(encryption, date)
+    puts message
+    message
   end
 end

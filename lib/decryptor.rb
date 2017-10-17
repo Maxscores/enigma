@@ -36,11 +36,9 @@ class Decryptor
     decrypted_file.join("")
   end
 
-  #duplicate in decryptor & encryptor
   def write_file(file_to_write, text_to_write)
     file = File.new(file_to_write, 'w')
     file.write(text_to_write)
     file.close
   end
-
 end

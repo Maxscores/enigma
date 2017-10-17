@@ -10,14 +10,13 @@ class DecryptorTest < Minitest::Test
   def test_initializes_with_characters
     decryptor = Decryptor.new()
 
-
     assert_instance_of Hash, decryptor.characters
   end
 
   def test_format_message_works
     decryptor = Decryptor.new()
     message = "hello"
-    output = [8,5,12,12,15]
+    output = [8, 5, 12, 12, 15]
 
     assert_equal output, decryptor.format_message(message)
   end
@@ -26,7 +25,7 @@ class DecryptorTest < Minitest::Test
     decryptor = Decryptor.new()
     character_values = [24, 30, 15, 27, 31, 23, 26, 30, 34, 37, 7]
     offset = [16, 25, 42, 54]
-    # binding.pry
+    
     decrypted_message = decryptor.decrypt_characters(character_values, offset)
 
     assert_equal "hello world", decrypted_message.join
@@ -60,6 +59,4 @@ class DecryptorTest < Minitest::Test
 
     assert_equal 'test text here', file_text
   end
-
-
 end

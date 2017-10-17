@@ -32,4 +32,5 @@ class Decryptor < HelperMethods
     end
     decrypted_file.join("")
   end
+
 end

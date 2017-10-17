@@ -4,7 +4,7 @@ require 'date'
 class Offset
   attr_reader :key, :date
 
-  def initialize(key, date = Date.today)
+  def initialize(key = nil, date = Date.today)
     @key = key
     @date = date
   end

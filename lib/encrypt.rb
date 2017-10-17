@@ -11,7 +11,7 @@ enigma = Enigma.new
 encrypted_text = enigma.encrypt_file(ARGV[0])
 enigma.write_file(ARGV[1], encrypted_text)
 key = enigma.random_key
-date = KeyGenerator.new.date_code(enigma.default_date)
+date = Offset.new(12345).date_code(Date.today)
 puts "Created #{ARGV[1]} with the key #{key} and date #{date}"
 
 

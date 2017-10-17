@@ -1,6 +1,12 @@
 require './lib/offset'
+require './lib/characters'
 
 class Decryptor
+  attr_reader :characters
+
+  def initialize
+    @characters = Characters.new.characters
+  end
 
   def decrypt(message, key, date = default_date)
     offset = Offset.new(key, date).offset
@@ -28,6 +34,13 @@ class Decryptor
       decrypt(line.chomp, key, date_code)
     end
     decrypted_file.join("")
+  end
+
+  #duplicate in decryptor & encryptor
+  def write_file(file_to_write, text_to_write)
+    file = File.new(file_to_write, 'w')
+    file.write(text_to_write)
+    file.close
   end
 
 end

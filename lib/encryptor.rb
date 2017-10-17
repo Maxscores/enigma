@@ -1,7 +1,8 @@
 require './lib/offset'
 require './lib/key_generator'
+require './lib/helper_methods'
 
-class Encryptor
+class Encryptor < HelperMethods
   attr_reader :characters
 
   def initialize
@@ -13,10 +14,6 @@ class Encryptor
     character_values = format_message(message)
     encrypted_character_values = encrypt_characters(character_values, offset)
     encrypted_character_values.join("")
-  end
-
-  def format_message(message)
-    message.split("").map {|character| characters[character]}
   end
 
   def encrypt_characters(character_values, offset)
@@ -34,11 +31,5 @@ class Encryptor
       encrypt(line.chomp)
     end
     encrypted_file.join("")
-  end
-
-  def write_file(file_to_write, text_to_write)
-    file = File.new(file_to_write, 'w')
-    file.write(text_to_write)
-    file.close
   end
 end

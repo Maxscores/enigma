@@ -1,4 +1,3 @@
-require './lib/offset'
 require './lib/characters'
 require './lib/encryptor'
 require './lib/decryptor'
@@ -21,29 +20,12 @@ class Enigma
   end
 
   def encrypt(message, key = random_key, date = default_date)
-    offset = Offset.new(key, date).offset
-    character_values = format_message(message)
-    encrypted_character_values = encrypt_characters(character_values, offset)
-    encrypted_character_values.join("")
+    encryptor = Encryptor.new
+    encryptor.encrypt(message, key, date)
   end
 
-  def format_message(message)
-    message.split("").map {|character| characters[character]}
+  def crack(encryption, date = default_date)
+    cracker = Cracker.new
+    cracker.crack(encryption, date)
   end
-
-  def encrypt_characters(character_values, offset)
-    counter = (-1)
-    character_values.map do |value|
-      counter += 1
-      new_value = (value + offset[counter%4])% characters.count
-      characters.key(new_value)
-    end
-  end
-
-  def write_file(file_to_write, text_to_write)
-    file = File.new(file_to_write, 'w')
-    file.write(text_to_write)
-    file.close
-  end
-
 end

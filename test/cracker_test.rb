@@ -34,14 +34,12 @@ class CrackerTest < Minitest::Test
     assert_equal expected, result
   end
 
-  def test_key_finder
+  def test_offset_finder
     cracker = Cracker.new
     encrypted_end_values = [33, 6, 27, 21]
     known_end_values = [38, 38, 5, 14]
-    date_offset = [4, 2, 8, 9]
-    values_zipped = encrypted_end_values.zip(known_end_values, date_offset)
-    result = cracker.key_finder(values_zipped)
-    expected_key = '30147'
+    result = cracker.offset_finder(encrypted_end_values, known_end_values)
+    expected_key = [34, 7, 22, 7]
 
     assert_equal expected_key, result
   end
@@ -49,7 +47,10 @@ class CrackerTest < Minitest::Test
   def test_crack
     cracker = Cracker.new
     encryption = "cl8sjefvmsze7f1u.fu"
+    message = "hello world ..end.."
 
-    assert_equal '30147', cracker.crack(encryption, '161017')
+    assert_equal message, cracker.crack(encryption, '161017')
   end
+
+
 end

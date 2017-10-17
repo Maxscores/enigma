@@ -1,4 +1,5 @@
 require './lib/offset'
+require './lib/key_generator'
 
 class Encryptor
   attr_reader :characters
@@ -7,7 +8,7 @@ class Encryptor
     @characters = Characters.new.characters
   end
 
-  def encrypt(message, key = random_key, date = default_date)
+  def encrypt(message, key = KeyGenerator.new.key, date = Date.new)
     offset = Offset.new(key, date).offset
     character_values = format_message(message)
     encrypted_character_values = encrypt_characters(character_values, offset)

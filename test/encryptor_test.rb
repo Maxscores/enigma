@@ -41,13 +41,11 @@ class EncryptorTest <MiniTest::Test
     assert_equal "x4o15wz48 g", message
   end
 
-  # def test_encrypt_file
-  #   encryptor = Encryptor.new()
-  #   encrypted_message = encryptor.encrypt_file('data/test_encryption.txt',
-  #                                              '12345',
-  #                                              '141017')
-  #   assert_equal "x4o15wz48 ", encrypted_message
-  # end
+  def test_encrypts_file_to_correct_length
+    encryptor = Encryptor.new()
+    encrypted_message = encryptor.encrypt_file('data/test_encryption.txt')
+    assert_equal "x4o15wz48 g", encrypted_message
+  end
 
   def write_file(file_to_write, text_to_write)
     file = File.new(file_to_write, 'w')

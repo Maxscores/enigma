@@ -24,19 +24,29 @@ class DecryptorTest < Minitest::Test
 
   def test_decrypt_characters
     decryptor = Decryptor.new()
-    encrypted_message = "x4o15wz48 g"
     character_values = [24, 30, 15, 27, 31, 23, 26, 30, 34, 37, 7]
-    key = "12345"
-    date_code = '141017'
-    offset = Offset.new(key, date_code).offset
+    offset = [16, 25, 42, 54]
+    # binding.pry
     decrypted_message = decryptor.decrypt_characters(character_values, offset)
 
     assert_equal "hello world", decrypted_message.join
   end
 
+  def test_decrypt_integration
+    decryptor = Decryptor.new()
+    encrypted_message = "x4o15wz48 g"
+    key = '12345'
+    date = Date.new(2017, 10, 14)
+    message = decryptor.decrypt(encrypted_message, key, date)
+
+    assert_equal "hello world", message
+  end
+
   def test_decrypt_file
     decryptor = Decryptor.new()
-    decrypted_message = decryptor.decrypt_file('data/test_decryption.txt', '12345', '141017')
+    decrypted_message = decryptor.decrypt_file('data/test_decryption.txt',
+                                               '12345',
+                                               '141017')
 
     assert_equal "hello world", decrypted_message
   end
@@ -44,7 +54,12 @@ class DecryptorTest < Minitest::Test
   def test_write_file
     decryptor = Decryptor.new()
     decryptor.write_file('data/test_write_file.txt', 'test text here')
+    file = File.open('data/test_write_file.txt', 'r')
+    file_text = file.read
+    file.close
 
-    assert_equal 'test text here', File.open('data/test_write_file.txt', 'r').read
+    assert_equal 'test text here', file_text
   end
+
+
 end

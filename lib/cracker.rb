@@ -12,10 +12,10 @@ class Cracker
   def crack(encryption, date = Date.today, key = nil)
     date_offset = Offset.new(key, date).date_offset
     crack_offset = (encryption.length%4) * (-1)
-    match_values = encrypted_end_values(encryption, crack_offset)
-    known_values = known_end_values(crack_offset)
-    key_breaker = match_values.zip(known_values, date_offset)
-    key = key_finder(key_breaker)
+    encrypted_end_values = encrypted_end_values(encryption, crack_offset)
+    known_end_values = known_end_values(crack_offset)
+    values_zipped = encrypted_end_values.zip(known_end_values, date_offset)
+    key_finder(values_zipped)
   end
 
   def encrypted_end_values(encryption, crack_offset)
@@ -29,11 +29,11 @@ class Cracker
     matched_end.map {|character| characters[character].to_i}
   end
 
-  def key_finder(key_breaker)
-    key_offset = key_breaker.map do |matched|
-      result = (matched[0] - matched[1] - matched[2])%39
+  def key_finder(values_zipped)
+    key_offset = values_zipped.map do |matched|
+      (matched[0] - matched[1] - matched[2])%39
     end
-    key = key_offset[0].to_s + key_offset[2].to_s + (key_offset[3]%10).to_s
+    key_offset[0].to_s + key_offset[2].to_s + (key_offset[3]%10).to_s
   end
 
 

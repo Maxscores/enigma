@@ -16,10 +16,10 @@ class CharactersTest < Minitest::Test
   def test_key_returns_values
     characters = Characters.new
 
-    assert_equal 12, characters.characters['l']
-    assert_equal 12, characters.characters["l"]
-    assert_equal 29, characters.characters["3"]
-    assert_equal 37, characters.characters[" "]
+    assert_equal 11, characters.characters['l']
+    assert_equal 11, characters.characters["l"]
+    assert_equal 28, characters.characters["3"]
+    assert_equal 36, characters.characters[" "]
   end
 
   def test_characters_is_a_hash

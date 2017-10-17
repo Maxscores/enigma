@@ -54,4 +54,14 @@ class EncryptorTest <MiniTest::Test
     file.write(text_to_write)
     file.close
   end
+
+  def test_write_file
+    encryptor = Encryptor.new()
+    encryptor.write_file('data/test_write_file.txt', 'test text here')
+    file = File.open('data/test_write_file.txt', 'r')
+    file_text = file.read
+    file.close
+
+    assert_equal 'test text here', file_text
+  end
 end

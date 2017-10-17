@@ -20,7 +20,7 @@ class CrackerTest < Minitest::Test
     encryption = "cl8sjefvmsze7f1u.fu"
     crack_offset = (-3)
     result = cracker.encrypted_end_values(encryption, crack_offset)
-    expected = [33, 6, 27, 21]
+    expected = [32, 5, 26, 20]
 
     assert_equal expected, result
   end
@@ -29,7 +29,7 @@ class CrackerTest < Minitest::Test
     cracker = Cracker.new
     crack_offset = (-3)
     result = cracker.known_end_values(crack_offset)
-    expected = [38, 38, 5, 14]
+    expected = [37, 37, 4, 13]
 
     assert_equal expected, result
   end

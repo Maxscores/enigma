@@ -1,6 +1,5 @@
 require_relative 'test_helper'
 # need to write more tests with another key/encryption combo
-
 class CrackerTest < Minitest::Test
   def test_it_exist
     cracker = Cracker.new

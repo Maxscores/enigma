@@ -41,6 +41,4 @@ class Cracker < Decryptor
       (matched[0] - matched[1])%39
     end
   end
-
-
 end

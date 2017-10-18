@@ -13,7 +13,6 @@ class Decryptor < HelperMethods
     offset = Offset.new(key, date).offset
     character_values = format_message(message)
     decrypted_character_values = decrypt_characters(character_values, offset)
-    puts "Decrypted message with key #{key} on #{date}"
     decrypted_character_values.join("")
   end
 
@@ -21,16 +20,15 @@ class Decryptor < HelperMethods
     counter = (-1)
     character_values.map do |value|
       counter += 1
-      new_value = (value - offset[counter%4]) % (characters.count-1)
+      new_value = (value - offset[counter%4]) % (characters.count-2)
       characters.key(new_value)
     end
   end
 
   def decrypt_file(file_to_read, key, date_code)
     file = File.readlines(file_to_read)
-    decrypted_file = file.map do |line|
-      decrypt(line.chomp, key, date_code)
-    end
-    decrypted_file.join("")
+    encrypted_file = file.map {|line| line.chomp}
+    decrypted_file = decrypt(encrypted_file.join("~"), key, date_code)
+    decrypted_file.gsub("~", "\n")
   end
 end

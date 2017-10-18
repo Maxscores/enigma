@@ -14,7 +14,6 @@ class Encryptor < HelperMethods
     offset = Offset.new(key, date).offset
     character_values = format_message(message)
     encrypted_character_values = encrypt_characters(character_values, offset)
-    puts "Encrypted message with key #{key} on #{date}"
     encrypted_character_values.join("")
   end
 
@@ -22,16 +21,16 @@ class Encryptor < HelperMethods
     counter = (-1)
     character_values.map do |value|
       counter += 1
-      new_value = (value + offset[counter%4]) % (characters.count-1)
+      new_value = (value + offset[counter%4]) % (characters.count-2)
       characters.key(new_value)
     end
   end
 
   def encrypt_file(file_to_read)
     file = File.readlines(file_to_read)
-    encrypted_file = file.map do |line|
-      encrypt(line.chomp)
-    end
-    encrypted_file.join("")
+    key = KeyGenerator.new.key
+    input_file = file.map {|line| line.chomp}
+    encrypted_file = encrypt(input_file.join(""), key)
+    encrypted_file.gsub("~", "\n")
   end
 end

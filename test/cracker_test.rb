@@ -11,7 +11,7 @@ class CrackerTest < Minitest::Test
     cracker = Cracker.new
 
     assert_instance_of Hash, cracker.characters
-    assert_equal 39, cracker.characters.count
+    assert_equal 40, cracker.characters.count
   end
 
   def test_encrypted_end_values

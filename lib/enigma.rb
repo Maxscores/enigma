@@ -6,16 +6,22 @@ require 'date'
 class Enigma
   def decrypt(message, key, date = Date.today)
     decryptor = Decryptor.new
-    decryptor.decrypt(message, key, date)
+    message = decryptor.decrypt(message, key, date)
+    puts "Decrypted message with key #{key} on #{date}"
+    message
   end
 
   def encrypt(message, key = KeyGenerator.new.key, date = Date.today)
     encryptor = Encryptor.new
-    encryptor.encrypt(message, key, date)
+    message = encryptor.encrypt(message, key, date)
+    puts "Encrypted message with key #{key} on #{date}"
+    message
   end
 
   def crack(encryption, date = Date.today)
     cracker = Cracker.new
-    cracker.crack(encryption, date)
+    message = cracker.crack(encryption, date)
+    puts "Cracked message on #{date}"
+    message
   end
 end

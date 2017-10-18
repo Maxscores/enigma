@@ -16,7 +16,6 @@ class Cracker < Decryptor
     known_end_values = known_end_values(crack_offset)
     total_offset = offset_finder(encrypted_end_values, known_end_values)
     decrypted_character_values = crack_decrypt(encryption, total_offset)
-    puts "Cracked message on #{date}"
     decrypted_character_values.join("")
   end
 
@@ -39,15 +38,14 @@ class Cracker < Decryptor
   def offset_finder(encrypted_end_values, known_end_values)
     values_zipped = encrypted_end_values.zip(known_end_values)
     values_zipped.map do |matched|
-      (matched[0] - matched[1]) % (characters.count-1)
+      (matched[0] - matched[1]) % (characters.count-2)
     end
   end
 
   def crack_file(file_to_read)
     file = File.readlines(file_to_read)
-    encrypted_file = file.map do |line|
-      crack(line.chomp)
-    end
-    encrypted_file.join("")
+    encrypted_file = file.map {|line| line.chomp}
+    cracked_file = crack(encrypted_file.join("~"))
+    cracked_file.gsub("~", "\n")
   end
 end

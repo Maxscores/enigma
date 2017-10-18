@@ -10,7 +10,7 @@ class CharactersTest < Minitest::Test
   def test_it_has_characters_by_default
     characters = Characters.new
 
-    assert_equal 39, characters.characters.count
+    assert_equal 40, characters.characters.count
   end
 
   def test_key_returns_values

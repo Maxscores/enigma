@@ -9,5 +9,4 @@ class HelperMethods
   def format_message(message)
     message.split("").map {|character| characters[character]}
   end
-
 end

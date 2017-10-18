@@ -17,11 +17,12 @@ class EnigmaTest < Minitest::Test
 
   def test_encrypt_outputs_message
     enigma = Enigma.new
+    result = enigma.encrypt("hello world", "12345", Date.today)
 
-    assert_equal "x4p25x158 h", enigma.encrypt("hello world", "12345", Date.today)
+    assert_equal "x4p25x158 h", result
   end
 
-  def test_decrypt_outputs_readable_message_default_date
+  def test_decrypt_outputs_readable_message_with_default_date
     enigma = Enigma.new
     decrypted = enigma.decrypt("x4p25x158 h", "12345")
 
@@ -35,4 +36,11 @@ class EnigmaTest < Minitest::Test
     assert enigma.decrypt("x4p25x158 h", "12345", Date.today)
   end
 
+  def test_crack_from_enigma
+    enigma = Enigma.new
+    encryption = "qskfxmvi1zc5indhmn "
+    message = "hello world ..end.."
+
+    assert_equal message, enigma.crack(encryption, '161017')
+  end
 end

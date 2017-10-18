@@ -14,6 +14,7 @@ class Encryptor < HelperMethods
     offset = Offset.new(key, date).offset
     character_values = format_message(message)
     encrypted_character_values = encrypt_characters(character_values, offset)
+    puts "key:#{key}"
     encrypted_character_values.join("")
   end
 

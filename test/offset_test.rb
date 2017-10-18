@@ -48,6 +48,4 @@ class OffsetTest < Minitest::Test
 
     assert_equal [16, 25,42, 54], offset.offset
   end
-
-
 end

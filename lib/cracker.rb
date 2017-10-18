@@ -15,8 +15,7 @@ class Cracker < Decryptor
     encrypted_end_values = encrypted_end_values(encryption, crack_offset)
     known_end_values = known_end_values(crack_offset)
     total_offset = offset_finder(encrypted_end_values, known_end_values)
-    decrypted_character_values = crack_decrypt(encryption, total_offset)
-    decrypted_character_values.join("")
+    crack_decrypt(encryption, total_offset).join("")
   end
 
   def crack_decrypt(encryption, offset)

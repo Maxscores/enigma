@@ -4,12 +4,12 @@ require 'date'
 class Offset
   attr_reader :key, :date
 
-  def initialize(key = nil, date = Date.today)
-    @key = key
+  def initialize(key, date)
+    @key = key.to_s
     @date = date
   end
 
-  def date_code(date)
+  def date_code
     if date.class == Date
       date.strftime("%d%m%y").to_i
     elsif date.class == String
@@ -18,14 +18,14 @@ class Offset
   end
 
   def date_offset
-    squared = date_code(date)**2
+    squared = date_code**2
     squared.digits.reverse[-4..-1]
   end
 
   def key_offset
     key_offset = []
     4.times do |time|
-      key_offset << [key[time],key[time + 1]].join("").to_i
+      key_offset << [key[time], key[time + 1]].join("").to_i
     end
     key_offset
   end

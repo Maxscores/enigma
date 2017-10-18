@@ -10,6 +10,6 @@ class KeyGeneratorTest < Minitest::Test
   def test_has_key_is_string
     new_key = KeyGenerator.new
 
-    assert_instance_of String, new_key.key
+    assert_instance_of Integer, new_key.key
   end
 end

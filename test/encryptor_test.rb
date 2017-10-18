@@ -23,12 +23,12 @@ class EncryptorTest <MiniTest::Test
 
   def test_encrypt_characters
     encryptor = Encryptor.new()
-    character_values = [8, 5, 12, 12, 15, 37, 23, 15, 18, 12, 4]
+    character_values = [7, 4, 11, 11, 14, 36, 22, 14, 17, 11, 3]
     offset = [16, 25, 42, 54]
 
     encrypted_message = encryptor.encrypt_characters(character_values, offset)
 
-    assert_equal "y5p26x159.h", encrypted_message.join
+    assert_equal "x4p25x158 h", encrypted_message.join
   end
 
   def test_encrypt_integration
@@ -38,7 +38,7 @@ class EncryptorTest <MiniTest::Test
     date = Date.new(2017, 10, 14)
     message = encryptor.encrypt(message, key, date)
 
-    assert_equal "x4o15wz48 g", message
+    assert_equal "x4p25x158 h", message
   end
 
   def test_encrypts_file_and_is_correct_length

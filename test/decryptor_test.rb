@@ -23,7 +23,7 @@ class DecryptorTest < Minitest::Test
 
   def test_decrypt_characters
     decryptor = Decryptor.new()
-    character_values = [23, 29, 14, 26, 30, 22, 25, 29, 33, 36, 6]
+    character_values = [23, 29, 15, 27, 30, 23, 26, 30, 33, 36, 7]
     offset = [16, 25, 42, 54]
 
     decrypted_message = decryptor.decrypt_characters(character_values, offset)
@@ -33,7 +33,7 @@ class DecryptorTest < Minitest::Test
 
   def test_decrypt_integration
     decryptor = Decryptor.new()
-    encrypted_message = "x4o15wz48 g"
+    encrypted_message = "x4p25x158 h"
     key = '12345'
     date = Date.new(2017, 10, 14)
     message = decryptor.decrypt(encrypted_message, key, date)

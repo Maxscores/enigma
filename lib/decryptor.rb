@@ -20,7 +20,7 @@ class Decryptor < HelperMethods
     counter = (-1)
     character_values.map do |value|
       counter += 1
-      new_value = (value - offset[counter%4])% characters.count
+      new_value = (value - offset[counter%4]) % (characters.count-1)
       characters.key(new_value)
     end
   end

@@ -9,7 +9,7 @@ class Encryptor < HelperMethods
     @characters = Characters.new.characters
   end
 
-  def encrypt(message, key = KeyGenerator.new.key, date = Date.new)
+  def encrypt(message, key = KeyGenerator.new.key, date = Date.today)
     offset = Offset.new(key, date).offset
     character_values = format_message(message)
     encrypted_character_values = encrypt_characters(character_values, offset)
@@ -20,7 +20,7 @@ class Encryptor < HelperMethods
     counter = (-1)
     character_values.map do |value|
       counter += 1
-      new_value = (value + offset[counter%4])% characters.count
+      new_value = (value + offset[counter%4]) % (characters.count-1)
       characters.key(new_value)
     end
   end

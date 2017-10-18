@@ -38,7 +38,7 @@ class Cracker < Decryptor
   def offset_finder(encrypted_end_values, known_end_values)
     values_zipped = encrypted_end_values.zip(known_end_values)
     values_zipped.map do |matched|
-      (matched[0] - matched[1])%39
+      (matched[0] - matched[1]) % (characters.count)
     end
   end
 

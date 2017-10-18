@@ -42,4 +42,12 @@ class Cracker < Decryptor
       (matched[0] - matched[1]) % (characters.count-1)
     end
   end
+
+  def crack_file(file_to_read)
+    file = File.readlines(file_to_read)
+    encrypted_file = file.map do |line|
+      crack(line.chomp)
+    end
+    encrypted_file.join("")
+  end
 end

@@ -41,6 +41,4 @@ class Cracker < Decryptor
       (matched[0] - matched[1]) % (characters.count)
     end
   end
-
-
 end

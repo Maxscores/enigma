@@ -1,6 +1,7 @@
 require './lib/offset'
 require './lib/key_generator'
 require './lib/helper_methods'
+require './lib/characters'
 
 class Encryptor < HelperMethods
   attr_reader :characters
@@ -13,6 +14,7 @@ class Encryptor < HelperMethods
     offset = Offset.new(key, date).offset
     character_values = format_message(message)
     encrypted_character_values = encrypt_characters(character_values, offset)
+    puts "Encrypted message with key #{key} on #{date}"
     encrypted_character_values.join("")
   end
 

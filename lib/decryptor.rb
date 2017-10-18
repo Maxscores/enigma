@@ -13,6 +13,7 @@ class Decryptor < HelperMethods
     offset = Offset.new(key, date).offset
     character_values = format_message(message)
     decrypted_character_values = decrypt_characters(character_values, offset)
+    puts "Decrypted message with key #{key} on #{date}"
     decrypted_character_values.join("")
   end
 

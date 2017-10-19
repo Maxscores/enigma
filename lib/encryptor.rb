@@ -18,10 +18,8 @@ class Encryptor < HelperMethods
   end
 
   def encrypt_characters(character_values, offset)
-    counter = (-1)
-    character_values.map do |value|
-      counter += 1
-      new_value = (value + offset[counter%4]) % (characters.count-2)
+    character_values.map.with_index do |value, index|
+      new_value = (value + offset[index%4]) % (characters.count-2)
       characters.key(new_value)
     end
   end

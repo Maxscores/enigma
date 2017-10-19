@@ -1,5 +1,5 @@
 require_relative 'test_helper'
-# need to write more tests with another key/encryption combo
+
 class CrackerTest < Minitest::Test
   def test_it_exist
     cracker = Cracker.new
@@ -51,5 +51,18 @@ class CrackerTest < Minitest::Test
     assert_equal message, cracker.crack(encryption, '161017')
   end
 
+  def test_with_multiple_ends
+    cracker = Cracker.new
+    encryption = "8965c4txb8tsyo9 .8ssz98wz4"
+    message = "hello..end.. world ..end.."
 
+    assert_equal message, cracker.crack(encryption, '161017')
+  end
+
+  def test_crack_file
+    cracker = Cracker.new()
+    cracked_message = cracker.crack_file('data/test_cracker.txt')
+
+    assert_equal "hello..end.. world ..end..", cracked_message
+  end
 end

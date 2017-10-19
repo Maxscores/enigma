@@ -1,6 +1,6 @@
 require_relative 'test_helper'
 
-class EncryptorTest <MiniTest::Test
+class EncryptorTest < MiniTest::Test
   def test_class_initializes
     encryptor = Encryptor.new()
 
@@ -25,7 +25,6 @@ class EncryptorTest <MiniTest::Test
     encryptor = Encryptor.new()
     character_values = [7, 4, 11, 11, 14, 36, 22, 14, 17, 11, 3]
     offset = [16, 25, 42, 54]
-
     encrypted_message = encryptor.encrypt_characters(character_values, offset)
 
     assert_equal "x4p25x158 h", encrypted_message.join
@@ -47,12 +46,6 @@ class EncryptorTest <MiniTest::Test
     original_message = "hello world"
 
     refute original_message == encrypted_message
-  end
-
-  def write_file(file_to_write, text_to_write)
-    file = File.new(file_to_write, 'w')
-    file.write(text_to_write)
-    file.close
   end
 
   def test_write_file

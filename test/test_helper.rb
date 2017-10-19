@@ -8,9 +8,8 @@ require './lib/cracker'
 require './lib/decryptor'
 require './lib/enigma'
 
-
-require 'pry'
-require 'date'
-
 require 'minitest/autorun'
 require 'minitest/pride'
+
+require 'date'
+require 'pry'

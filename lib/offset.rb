@@ -36,5 +36,4 @@ class Offset
       pair.sum
     end
   end
-
 end
